@@ -13,14 +13,14 @@ de [tarieven PDF](http://www.ns.nl/binaries/_ht_1484823524466/content/assets/ns-
 
 Er moet wat preprocessing gedaan worden om de tarieven CSV te kunnen gebruiken:
 
-1. `cd csv/`
-1. `pdftotext -layout tarieven-2017.pdf`
-2. `echo "tariefeenheid;tweedevol;tweede20;tweede40;eerstevol;eerste20;eerste40" >> tarieven.csv`
-3.
+* `cd csv/`
+* `pdftotext -layout tarieven-2017.pdf`
+* `echo "tariefeenheid;tweedevol;tweede20;tweede40;eerstevol;eerste20;eerste40" >> tarieven.csv`
+
 ```
   for i in {0..8}; 
     do PREPEND=`grep -P '^\s+\d+\b\s+' tarieven-2017.txt | sed -e 's/€/;/g' | tr -d ' ' | head -n 1 | cut -d ';' -f 2-`; 
        echo "$i;$PREPEND" | tee -a tarieven.csv;
   done;
 ```
-4. `grep -P '^\s+\d+\b\s+' tarieven-2017.txt | sed -e 's/€/;/g' | tr -d ' ' | head -n 243 | tail -n +2 >> tarieven.csv`
+* `grep -P '^\s+\d+\b\s+' tarieven-2017.txt | sed -e 's/€/;/g' | tr -d ' ' | head -n 243 | tail -n +2 >> tarieven.csv`
