@@ -11,4 +11,4 @@ def get_station_code(match):
     for station in stationslijst:
         if stationslijst[station]["naam"] == match:
             return station
-    raise ValueError("Could not find station")
+    raise ValueError("Could not find station '{}'".format(match))
