@@ -9,8 +9,13 @@ maandprijs = 9900
 for trx in ovchiptrx:
     van = trx["Vertrek"]
     naar = trx["Bestemming"]
-    van_code = get_station_code(van)
-    naar_code = get_station_code(naar)
+    try:
+        van_code = get_station_code(van)
+        naar_code = get_station_code(naar)
+    except ValueError as ve:
+        print(">>> Warning: skipping transaction between '{}' and '{}'.".format(van,naar))
+        print(">>> Warning: {}".format(ve))
+        continue
 
     bedrag = 0 if trx["Bedrag"] == "" else int(trx["Bedrag"].replace(",", ""))
     cost = int(get_cost(van_code, naar_code).replace(",", ""))
