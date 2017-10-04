@@ -13,7 +13,7 @@ parser.add_argument('--csv', metavar='CSV', required=False,
                     default='csv/transacties-ovchip.csv')
 parser.add_argument('--silent', '-s', default=False, action="store_true",
                     help=u'Do not show individual transactions, but only totals')
-parser.add_argument('--price', '-p', metavar='PRICE', default=9900, required=False,
+parser.add_argument('--price', '-p', metavar='PRICE', type=int, default=9900, required=False,
                     dest='price', help=u'Monthly price of your season ticket')
 
 args = parser.parse_args()
@@ -55,5 +55,5 @@ for trx in ovchiptrx:
         print("Van: {}, Naar: {}, Betaald: {:.2f}, Zou kosten: {:.2f}".format(van, naar, bedrag/100, cost/100))
 
 print("Besteed: {:.2f}, Zou kosten: {:.2f}".format(besteed/100, zou_kosten/100))
-print("Maandprijs: {:.2f}".format(arg.price/100))
-print("Bespaard: {:.2f}".format((zou_kosten - besteed - arg.price)/100))
+print("Maandprijs: {:.2f}".format(args.price/100))
+print("Bespaard: {:.2f}".format((zou_kosten - besteed - args.price)/100))
