@@ -14,7 +14,7 @@ parser.add_argument('--csv', metavar='CSV', required=False,
 parser.add_argument('--silent', '-s', default=False, action="store_true",
                     help=u'Do not show individual transactions, but only totals')
 parser.add_argument('--price', '-p', metavar='PRICE', type=int, default=9900, required=False,
-                    dest='price', help=u'Monthly price of your season ticket')
+                    dest='price', help=u'Monthly price of your season ticket in eurocents')
 
 args = parser.parse_args()
 
